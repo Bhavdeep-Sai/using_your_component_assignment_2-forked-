@@ -1,6 +1,6 @@
 import LikeButton from './likebutton';
 
-const PostCard = ({ profilePicture, username, content }) => {
+const PostCard = ({ profilePicture, username, content, isLiked, onToggleLike }) => {
   return (
     <div
       style={{
@@ -25,7 +25,7 @@ const PostCard = ({ profilePicture, username, content }) => {
       />
       <h3 style={{ margin: '10px 0', color: '#374151' }}>{username}</h3>
       <p style={{ marginBottom: '10px', color: '#6b7280' }}>{content}</p>
-      <LikeButton />
+      <LikeButton isLiked={isLiked} onToggleLike={onToggleLike} />
     </div>
   );
 };

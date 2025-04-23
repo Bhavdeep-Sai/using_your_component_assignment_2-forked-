@@ -1,17 +1,9 @@
-import { useState } from "react";
-
-const LikeButton = () => {
-  const [liked, setLiked] = useState(false);
-
-  const toggleLike = () => {
-    setLiked(!liked);
-  };
-
+const LikeButton = ({ isLiked, onToggleLike }) => {
   return (
     <button
-      onClick={toggleLike}
+      onClick={onToggleLike}
       style={{
-        backgroundColor: liked ? '#f87171' : '#d1d5db',
+        backgroundColor: isLiked ? '#f87171' : '#d1d5db',
         color: '#fff',
         border: 'none',
         padding: '10px 20px',
@@ -19,7 +11,7 @@ const LikeButton = () => {
         cursor: 'pointer',
       }}
     >
-      {liked ? 'Liked' : 'Like'}
+      {isLiked ? 'Liked' : 'Like'}
     </button>
   );
 };

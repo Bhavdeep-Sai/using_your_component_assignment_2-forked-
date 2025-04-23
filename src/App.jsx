@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import PostCard from './components/postcard';
 import './App.css';
 
 function App() {
-
-  const initialPosts = [
+  const [posts, setPosts] = useState([
     {
       id: 1,
       profilePicture: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg',
@@ -28,16 +25,26 @@ function App() {
       content: 'Just another day...',
       isLiked: false,
     },
-  ];
+  ]);
+
+  const toggleLike = (id) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post.id === id ? { ...post, isLiked: !post.isLiked } : post
+      )
+    );
+  };
 
   return (
     <div>
-      {initialPosts.map((post) => (
+      {posts.map((post) => (
         <PostCard
           key={post.id}
           profilePicture={post.profilePicture}
           username={post.username}
           content={post.content}
+          isLiked={post.isLiked}
+          onToggleLike={() => toggleLike(post.id)}
         />
       ))}
     </div>
